@@ -1,2 +1,3 @@
 - `args_get`
 - `random_get`
+- `proc_exit`

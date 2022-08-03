@@ -50,6 +50,7 @@ fn main() {
 
   register_fn!(scope, obj, args_get);
   register_fn!(scope, obj, random_get);
+  register_fn!(scope, obj, proc_exit);
 
   {}
   let template = v8::FunctionTemplate::builder(
@@ -72,7 +73,8 @@ fn main() {
   let tc = &mut v8::TryCatch::new(scope);
   let promise = {
     let source =
-      v8::String::new(tc, include_str!("../examples/hello_world.js")).unwrap();
+      v8::String::new(tc, include_str!("../examples/wasi/fastwasi.js"))
+        .unwrap();
     let scope = &mut v8::EscapableHandleScope::new(tc);
     let script = v8::Script::compile(scope, source, None).unwrap();
 
